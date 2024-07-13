@@ -1,1 +1,8 @@
-<p>survey-list works!</p>
+<!-- Iterate through the list of surveys and display each one -->
+<div *ngFor="let survey of surveys">
+  <p>{{ survey.firstName }} {{ survey.lastName }}</p>
+  <!-- Button to delete a survey -->
+  <button (click)="deleteSurvey(survey.id)">Delete</button>
+  <!-- Placeholder button for edit functionality -->
+  <button>Edit</button>
+</div>

@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WelcomeComponent } from './welcome/welcome.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { SurveyListComponent } from './survey-list/survey-list.component';
 
+// Define routes for the application
 const routes: Routes = [
-  { path: '', redirectTo: '/survey-form', pathMatch: 'full' },
-  { path: 'survey-form', component: SurveyFormComponent },
-  { path: 'survey-list', component: SurveyListComponent }
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+  { path: 'welcome', component: WelcomeComponent },
+  { path: 'student-survey', component: SurveyFormComponent },
+  { path: 'list-all-surveys', component: SurveyListComponent }
 ];
 
 @NgModule({
