@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SurveyService } from '../survey.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-survey-form',
@@ -28,6 +28,27 @@ export class SurveyFormComponent {
       likelihoodToRecommend: [''],
       additionalComments: ['']
     });
+  }
+
+  // Getter for likedMost FormArray
+  get getLikedMost(): FormArray {
+    return this.surveyForm.get('likedMost') as FormArray;
+  }
+
+  // Method to handle checkbox changes
+  onCheckboxChange(event: any) {
+    const likedMost = this.getLikedMost;
+
+    // if checked, add new item (form control) to likedMost list
+    if (event.target.checked) {
+      likedMost.push(this.fb.control(event.target.value));
+    } 
+    // else, search through likedMost list and remove item
+    // with matching value as checkbox
+    else {
+      const index = likedMost.controls.findIndex(x => x.value === event.target.value);
+      likedMost.removeAt(index);
+    }
   }
 
   // Method to handle form submission

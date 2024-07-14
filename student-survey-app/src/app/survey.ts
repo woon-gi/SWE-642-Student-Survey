@@ -10,7 +10,7 @@ export class Survey {
     telephoneNumber!: string;
     email!: string;
     dateOfSurvey!: string;
-    likedMost!: string;
+    likedMost!: string[];
     interestedBy!: string;
     likelihoodToRecommend!: string;
     additionalComments!: string;

@@ -2,81 +2,127 @@
   <!-- Input field for first name -->
   <div>
     <label for="firstName">First Name:</label>
-    <input id="firstName" formControlName="firstName" type="text">
+    <input id="firstName" formControlName="firstName" type="text" />
   </div>
-  
+
   <!-- Input field for last name -->
   <div>
     <label for="lastName">Last Name:</label>
-    <input id="lastName" formControlName="lastName" type="text">
+    <input id="lastName" formControlName="lastName" type="text" />
   </div>
-  
+
   <!-- Input field for street address -->
   <div>
     <label for="streetAddress">Street Address:</label>
-    <input id="streetAddress" formControlName="streetAddress" type="text">
+    <input id="streetAddress" formControlName="streetAddress" type="text" />
   </div>
-  
+
   <!-- Input field for city -->
   <div>
     <label for="city">City:</label>
-    <input id="city" formControlName="city" type="text">
+    <input id="city" formControlName="city" type="text" />
   </div>
-  
+
   <!-- Input field for state -->
   <div>
     <label for="state">State:</label>
-    <input id="state" formControlName="state" type="text">
+    <input id="state" formControlName="state" type="text" />
   </div>
-  
+
   <!-- Input field for zip code -->
   <div>
     <label for="zip">Zip Code:</label>
-    <input id="zip" formControlName="zip" type="text">
+    <input id="zip" formControlName="zip" type="text" />
   </div>
-  
+
   <!-- Input field for telephone number -->
   <div>
     <label for="telephoneNumber">Telephone Number:</label>
-    <input id="telephoneNumber" formControlName="telephoneNumber" type="text">
+    <input id="telephoneNumber" formControlName="telephoneNumber" type="text" />
   </div>
-  
+
   <!-- Input field for email -->
   <div>
     <label for="email">Email:</label>
-    <input id="email" formControlName="email" type="email">
+    <input id="email" formControlName="email" type="email" />
   </div>
-  
+
   <!-- Input field for date of survey -->
   <div>
     <label for="dateOfSurvey">Date of Survey:</label>
-    <input id="dateOfSurvey" formControlName="dateOfSurvey" type="date">
+    <input id="dateOfSurvey" formControlName="dateOfSurvey" type="date" />
   </div>
-  
+
   <!-- Checkboxes for what the student liked most -->
   <div>
     <label>What did you like most about the campus?</label>
     <div>
-      <label><input type="checkbox" formControlName="likedMost" value="students"> Students</label>
-      <label><input type="checkbox" formControlName="likedMost" value="location"> Location</label>
-      <label><input type="checkbox" formControlName="likedMost" value="campus"> Campus</label>
-      <label><input type="checkbox" formControlName="likedMost" value="atmosphere"> Atmosphere</label>
-      <label><input type="checkbox" formControlName="likedMost" value="dormRooms"> Dorm Rooms</label>
-      <label><input type="checkbox" formControlName="likedMost" value="sports"> Sports</label>
+      <input
+        type="checkbox"
+        value="students"
+        (change)="onCheckboxChange($event)"
+      />
+      Students
+      <input
+        type="checkbox"
+        value="location"
+        (change)="onCheckboxChange($event)"
+      />
+      Location
+      <input
+        type="checkbox"
+        value="campus"
+        (change)="onCheckboxChange($event)"
+      />
+      Campus
+      <input
+        type="checkbox"
+        value="atmosphere"
+        (change)="onCheckboxChange($event)"
+      />
+      Atmosphere
+      <input
+        type="checkbox"
+        value="dormRooms"
+        (change)="onCheckboxChange($event)"
+      />
+      Dorm Rooms
+      <input
+        type="checkbox"
+        value="sports"
+        (change)="onCheckboxChange($event)"
+      />
+      Sports
     </div>
   </div>
-  
+
   <!-- Radio buttons for how the student became interested -->
   <div>
     <label>How did you become interested in the university?</label>
     <div>
-      <label><input type="radio" formControlName="interestedBy" value="friends"> Friends</label>
-      <label><input type="radio" formControlName="interestedBy" value="television"> Television</label>
-      <label><input type="radio" formControlName="interestedBy" value="internet"> Internet</label>
-      <label><input type="radio" formControlName="interestedBy" value="other"> Other</label>
+      <label
+        ><input type="radio" formControlName="interestedBy" value="friends" />
+        Friends</label
+      >
+      <label
+        ><input
+          type="radio"
+          formControlName="interestedBy"
+          value="television"
+        />
+        Television</label
+      >
+      <label
+        ><input type="radio" formControlName="interestedBy" value="internet" />
+        Internet</label
+      >
+      <label
+        ><input type="radio" formControlName="interestedBy" value="other" />
+        Other</label
+      >
     </div>
   </div>
-  
+
   <!-- Dropdown for likelihood to recommend the school -->
   <div>
     <label for="likelihoodToRecommend">Likelihood to Recommend:</label>
@@ -86,13 +132,16 @@
       <option value="unlikely">Unlikely</option>
     </select>
   </div>
-  
+
   <!-- Text area for additional comments -->
   <div>
     <label for="additionalComments">Additional Comments:</label>
-    <textarea id="additionalComments" formControlName="additionalComments"></textarea>
+    <textarea
+      id="additionalComments"
+      formControlName="additionalComments"
+    ></textarea>
   </div>
-  
+
   <!-- Submit and cancel buttons -->
   <div>
     <button type="submit">Submit</button>
