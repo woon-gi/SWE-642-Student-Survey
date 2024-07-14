@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { SurveyListComponent } from './survey-list/survey-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { EditSurveyComponent } from './edit-survey/edit-survey.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SurveyFormComponent,
     SurveyListComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    EditSurveyComponent
   ],
   imports: [
     BrowserModule,

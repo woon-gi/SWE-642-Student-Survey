@@ -1,0 +1,99 @@
+<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="container mt-4">
+    <!-- First Name -->
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" class="form-control" formControlName="firstName">
+    </div>
+  
+    <!-- Last Name -->
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" class="form-control" formControlName="lastName">
+    </div>
+  
+    <!-- Street Address -->
+    <div class="form-group">
+      <label for="streetAddress">Street Address:</label>
+      <input type="text" id="streetAddress" class="form-control" formControlName="streetAddress">
+    </div>
+  
+    <!-- City -->
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" class="form-control" formControlName="city">
+    </div>
+  
+    <!-- State -->
+    <div class="form-group">
+      <label for="state">State:</label>
+      <input type="text" id="state" class="form-control" formControlName="state">
+    </div>
+  
+    <!-- ZIP Code -->
+    <div class="form-group">
+      <label for="zip">ZIP Code:</label>
+      <input type="text" id="zip" class="form-control" formControlName="zip">
+    </div>
+  
+    <!-- Telephone Number -->
+    <div class="form-group">
+      <label for="telephoneNumber">Telephone Number:</label>
+      <input type="text" id="telephoneNumber" class="form-control" formControlName="telephoneNumber">
+    </div>
+  
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" class="form-control" formControlName="email">
+    </div>
+  
+    <!-- Date of Survey -->
+    <div class="form-group">
+      <label for="dateOfSurvey">Date of Survey:</label>
+      <input type="date" id="dateOfSurvey" class="form-control" formControlName="dateOfSurvey">
+    </div>
+  
+    <!-- Liked Most -->
+    <div class="form-group">
+      <label>Liked Most:</label>
+      <div class="checkbox-group">
+        <div class="form-check" *ngFor="let option of likedMostOptions">
+          <input type="checkbox" class="form-check-input" [value]="option" formControlName="likedMost">
+          <label class="form-check-label">{{ option }}</label>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Interested By -->
+    <div class="form-group">
+      <label>Interested By:</label>
+      <div class="radio-group">
+        <div class="form-check" *ngFor="let option of interestedByOptions">
+          <input type="radio" class="form-check-input" [value]="option" formControlName="interestedBy">
+          <label class="form-check-label">{{ option }}</label>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Likelihood to Recommend -->
+    <div class="form-group">
+      <label for="likelihoodToRecommend">Likelihood to Recommend:</label>
+      <select id="likelihoodToRecommend" class="form-control" formControlName="likelihoodToRecommend">
+        <option value="veryLikely">Very Likely</option>
+        <option value="likely">Likely</option>
+        <option value="unlikely">Unlikely</option>
+      </select>
+    </div>
+  
+    <!-- Additional Comments -->
+    <div class="form-group">
+      <label for="additionalComments">Additional Comments:</label>
+      <textarea id="additionalComments" class="form-control" formControlName="additionalComments"></textarea>
+    </div>
+  
+    <!-- Submit and Cancel Buttons -->
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    </div>
+  </form>

@@ -1,8 +1,20 @@
 <!-- Iterate through the list of surveys and display each one -->
-<div *ngFor="let survey of surveys">
-  <p>{{ survey.firstName }} {{ survey.lastName }}</p>
-  <!-- Button to delete a survey -->
-  <button (click)="deleteSurvey(survey.id)">Delete</button>
-  <!-- Placeholder button for edit functionality -->
-  <button>Edit</button>
-</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let survey of surveys">
+      <td>{{ survey.firstName }}</td>
+      <td>{{ survey.lastName }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="editSurvey(survey.id)">Edit</button>
+        <button class="btn btn-danger" (click)="deleteSurvey(survey.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

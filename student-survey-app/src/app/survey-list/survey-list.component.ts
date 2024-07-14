@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SurveyService } from '../survey.service';
 import { Survey } from '../survey';
 
@@ -11,13 +12,20 @@ export class SurveyListComponent implements OnInit {
   // Array to hold the list of surveys
   surveys: Survey[] = [];
 
-  constructor(private surveyService: SurveyService) { }
+  constructor(
+    private surveyService: SurveyService,
+    private router: Router
+  ) { }
 
   // Initialize the component and load the surveys
   ngOnInit(): void {
     this.surveyService.getSurveys().subscribe(data => {
       this.surveys = data;
     });
+  }
+
+  editSurvey(id: number | undefined): void {
+    this.router.navigate(['/edit-survey', id]);
   }
 
   // Method to delete a survey by its ID

@@ -18,6 +18,12 @@ export class SurveyService {
     return this.http.get<Survey[]>(`${this.baseUrl}`);
   }
 
+  /* GET /api/surveys/{id}: Retrieve surveys by id.
+  Method to retrieve surveys by id from the backend */
+  getSurvey(id: number): Observable<Survey> {
+    return this.http.get<Survey>(`${this.baseUrl}/${id}`);
+  }
+
   /* POST /api/surveys: Create a new survey.
   Method to create a new survey and send it to the backend */
   createSurvey(survey: Survey): Observable<Survey> {
@@ -32,7 +38,7 @@ export class SurveyService {
 
   /* DELETE /api/surveys/{id}: Delete a survey.
   Method to delete a survey by its ID */
-  deleteSurvey(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  deleteSurvey(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.baseUrl}/${id}`, { responseType: 'text' as 'json' });
   }
 }
