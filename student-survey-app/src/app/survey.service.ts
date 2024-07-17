@@ -33,7 +33,7 @@ export class SurveyService {
   /* PUT /api/surveys/{id}: Update an existing survey.
   Method to update an existing survey by its ID */
   updateSurvey(id: number, survey: Survey): Observable<Survey> {
-    return this.http.put<Survey>(`${this.baseUrl}/${id}`, survey);
+    return this.http.put<Survey>(`${this.baseUrl}/${id}`, survey, { responseType: 'text' as 'json' });
   }
 
   /* DELETE /api/surveys/{id}: Delete a survey.

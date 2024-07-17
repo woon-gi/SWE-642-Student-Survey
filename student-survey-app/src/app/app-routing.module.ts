@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'student-survey', component: SurveyFormComponent },
-  { path: 'list-all-surveys', component: SurveyListComponent },
+  { path: 'list-surveys', component: SurveyListComponent },
   { path: 'edit-survey/:id', component: EditSurveyComponent }
 ];
 

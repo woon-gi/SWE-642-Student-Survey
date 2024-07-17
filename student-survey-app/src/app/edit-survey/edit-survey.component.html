@@ -1,99 +1,102 @@
-<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="container mt-4">
-    <!-- First Name -->
-    <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" class="form-control" formControlName="firstName">
-    </div>
-  
-    <!-- Last Name -->
-    <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" class="form-control" formControlName="lastName">
-    </div>
-  
-    <!-- Street Address -->
-    <div class="form-group">
-      <label for="streetAddress">Street Address:</label>
-      <input type="text" id="streetAddress" class="form-control" formControlName="streetAddress">
-    </div>
-  
-    <!-- City -->
-    <div class="form-group">
-      <label for="city">City:</label>
-      <input type="text" id="city" class="form-control" formControlName="city">
-    </div>
-  
-    <!-- State -->
-    <div class="form-group">
-      <label for="state">State:</label>
-      <input type="text" id="state" class="form-control" formControlName="state">
-    </div>
-  
-    <!-- ZIP Code -->
-    <div class="form-group">
-      <label for="zip">ZIP Code:</label>
-      <input type="text" id="zip" class="form-control" formControlName="zip">
-    </div>
-  
-    <!-- Telephone Number -->
-    <div class="form-group">
-      <label for="telephoneNumber">Telephone Number:</label>
-      <input type="text" id="telephoneNumber" class="form-control" formControlName="telephoneNumber">
-    </div>
-  
-    <!-- Email -->
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" class="form-control" formControlName="email">
-    </div>
-  
-    <!-- Date of Survey -->
-    <div class="form-group">
-      <label for="dateOfSurvey">Date of Survey:</label>
-      <input type="date" id="dateOfSurvey" class="form-control" formControlName="dateOfSurvey">
-    </div>
-  
-    <!-- Liked Most -->
-    <div class="form-group">
-      <label>Liked Most:</label>
-      <div class="checkbox-group">
-        <div class="form-check" *ngFor="let option of likedMostOptions">
-          <input type="checkbox" class="form-check-input" [value]="option" formControlName="likedMost">
-          <label class="form-check-label">{{ option }}</label>
-        </div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/welcome">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="/list-surveys">Survey List</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit Survey</li>
+  </ol>
+</nav>
+
+<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="container mt-4" *ngIf="surveyForm">
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name:</label>
+    <input id="firstName" formControlName="firstName" type="text" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name:</label>
+    <input id="lastName" formControlName="lastName" type="text" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="streetAddress" class="form-label">Street Address:</label>
+    <input id="streetAddress" formControlName="streetAddress" type="text" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="city" class="form-label">City:</label>
+    <input id="city" formControlName="city" type="text" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="state" class="form-label">State:</label>
+    <input id="state" formControlName="state" type="text" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="zip" class="form-label">ZIP Code:</label>
+    <input id="zip" formControlName="zip" type="text" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="telephoneNumber" class="form-label">Telephone Number:</label>
+    <input id="telephoneNumber" formControlName="telephoneNumber" type="text" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input id="email" formControlName="email" type="email" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label for="dateOfSurvey" class="form-label">Date of Survey:</label>
+    <input id="dateOfSurvey" formControlName="dateOfSurvey" type="date" class="form-control" />
+  </div>
+
+  <!-- Liked Most -->
+  <div class="form-group">
+    <label>Liked Most:</label>
+    <div formArrayName="likedMost" class="checkbox-group">
+      <div class="form-check" *ngFor="let option of likedMostOptions; let i = index">
+        <input type="checkbox" class="form-check-input" [value]="option" [formControlName]="i">
+        <label class="form-check-label">{{ option }}</label>
       </div>
     </div>
-  
-    <!-- Interested By -->
-    <div class="form-group">
-      <label>Interested By:</label>
-      <div class="radio-group">
-        <div class="form-check" *ngFor="let option of interestedByOptions">
-          <input type="radio" class="form-check-input" [value]="option" formControlName="interestedBy">
-          <label class="form-check-label">{{ option }}</label>
-        </div>
+  </div>
+
+  <!-- Interested By -->
+  <div class="form-group">
+    <label>Interested By:</label>
+    <div class="radio-group">
+      <div class="form-check" *ngFor="let option of interestedByOptions; let i = index">
+        <input type="radio" class="form-check-input" [value]="option" formControlName="interestedBy">
+        <label class="form-check-label">{{ option }}</label>
       </div>
     </div>
-  
-    <!-- Likelihood to Recommend -->
-    <div class="form-group">
-      <label for="likelihoodToRecommend">Likelihood to Recommend:</label>
-      <select id="likelihoodToRecommend" class="form-control" formControlName="likelihoodToRecommend">
-        <option value="veryLikely">Very Likely</option>
-        <option value="likely">Likely</option>
-        <option value="unlikely">Unlikely</option>
-      </select>
-    </div>
-  
-    <!-- Additional Comments -->
-    <div class="form-group">
-      <label for="additionalComments">Additional Comments:</label>
-      <textarea id="additionalComments" class="form-control" formControlName="additionalComments"></textarea>
-    </div>
-  
-    <!-- Submit and Cancel Buttons -->
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-    </div>
-  </form>
+  </div>
+
+  <!-- Likelihood to Recommend -->
+  <div class="form-group">
+    <label for="likelihoodToRecommend">Likelihood to Recommend:</label>
+    <select id="likelihoodToRecommend" class="form-control" formControlName="likelihoodToRecommend">
+      <option value="veryLikely">Very Likely</option>
+      <option value="likely">Likely</option>
+      <option value="unlikely">Unlikely</option>
+    </select>
+  </div>
+
+  <!-- Additional Comments -->
+  <div class="form-group">
+    <label for="additionalComments">Additional Comments:</label>
+    <textarea id="additionalComments" class="form-control" formControlName="additionalComments"></textarea>
+  </div>
+
+  <!-- Submit and Cancel Buttons -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </div>
+</form>

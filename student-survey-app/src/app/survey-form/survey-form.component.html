@@ -1,150 +1,106 @@
-<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()">
-  <!-- Input field for first name -->
-  <div>
-    <label for="firstName">First Name:</label>
-    <input id="firstName" formControlName="firstName" type="text" />
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/welcome">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Survey Form</li>
+  </ol>
+</nav>
+
+<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="container mt-4">
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
   </div>
 
-  <!-- Input field for last name -->
-  <div>
-    <label for="lastName">Last Name:</label>
-    <input id="lastName" formControlName="lastName" type="text" />
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name:</label>
+    <input id="firstName" formControlName="firstName" type="text" class="form-control" />
   </div>
 
-  <!-- Input field for street address -->
-  <div>
-    <label for="streetAddress">Street Address:</label>
-    <input id="streetAddress" formControlName="streetAddress" type="text" />
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name:</label>
+    <input id="lastName" formControlName="lastName" type="text" class="form-control" />
   </div>
 
-  <!-- Input field for city -->
-  <div>
-    <label for="city">City:</label>
-    <input id="city" formControlName="city" type="text" />
+  <div class="mb-3">
+    <label for="streetAddress" class="form-label">Street Address:</label>
+    <input id="streetAddress" formControlName="streetAddress" type="text" class="form-control" />
   </div>
 
-  <!-- Input field for state -->
-  <div>
-    <label for="state">State:</label>
-    <input id="state" formControlName="state" type="text" />
+  <div class="mb-3">
+    <label for="city" class="form-label">City:</label>
+    <input id="city" formControlName="city" type="text" class="form-control" />
   </div>
 
-  <!-- Input field for zip code -->
-  <div>
-    <label for="zip">Zip Code:</label>
-    <input id="zip" formControlName="zip" type="text" />
+  <div class="mb-3">
+    <label for="state" class="form-label">State:</label>
+    <input id="state" formControlName="state" type="text" class="form-control" />
   </div>
 
-  <!-- Input field for telephone number -->
-  <div>
-    <label for="telephoneNumber">Telephone Number:</label>
-    <input id="telephoneNumber" formControlName="telephoneNumber" type="text" />
+  <div class="mb-3">
+    <label for="zip" class="form-label">Zip Code:</label>
+    <input id="zip" formControlName="zip" type="text" class="form-control" />
   </div>
 
-  <!-- Input field for email -->
-  <div>
-    <label for="email">Email:</label>
-    <input id="email" formControlName="email" type="email" />
+  <div class="mb-3">
+    <label for="telephoneNumber" class="form-label">Telephone Number:</label>
+    <input id="telephoneNumber" formControlName="telephoneNumber" type="text" class="form-control" />
   </div>
 
-  <!-- Input field for date of survey -->
-  <div>
-    <label for="dateOfSurvey">Date of Survey:</label>
-    <input id="dateOfSurvey" formControlName="dateOfSurvey" type="date" />
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input id="email" formControlName="email" type="email" class="form-control" />
   </div>
 
-  <!-- Checkboxes for what the student liked most -->
-  <div>
-    <label>What did you like most about the campus?</label>
-    <div>
-      <input
-        type="checkbox"
-        value="students"
-        (change)="onCheckboxChange($event)"
-      />
-      Students
-      <input
-        type="checkbox"
-        value="location"
-        (change)="onCheckboxChange($event)"
-      />
-      Location
-      <input
-        type="checkbox"
-        value="campus"
-        (change)="onCheckboxChange($event)"
-      />
-      Campus
-      <input
-        type="checkbox"
-        value="atmosphere"
-        (change)="onCheckboxChange($event)"
-      />
-      Atmosphere
-      <input
-        type="checkbox"
-        value="dormRooms"
-        (change)="onCheckboxChange($event)"
-      />
-      Dorm Rooms
-      <input
-        type="checkbox"
-        value="sports"
-        (change)="onCheckboxChange($event)"
-      />
-      Sports
+  <div class="mb-3">
+    <label for="dateOfSurvey" class="form-label">Date of Survey:</label>
+    <input id="dateOfSurvey" formControlName="dateOfSurvey" type="date" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">What did you like most about the campus?</label>
+    <div formArrayName="likedMost" class="checkbox-group">
+      <div class="form-check" *ngFor="let control of likedMostArray.controls; let i = index">
+        <input type="checkbox" class="form-check-input" [formControlName]="i">
+        <label class="form-check-label">{{ likedMostOptions[i] }}</label>
+      </div>
     </div>
   </div>
 
-  <!-- Radio buttons for how the student became interested -->
-  <div>
-    <label>How did you become interested in the university?</label>
-    <div>
-      <label
-        ><input type="radio" formControlName="interestedBy" value="friends" />
-        Friends</label
-      >
-      <label
-        ><input
-          type="radio"
-          formControlName="interestedBy"
-          value="television"
-        />
-        Television</label
-      >
-      <label
-        ><input type="radio" formControlName="interestedBy" value="internet" />
-        Internet</label
-      >
-      <label
-        ><input type="radio" formControlName="interestedBy" value="other" />
-        Other</label
-      >
+  <div class="mb-3">
+    <label class="form-label">How did you become interested in the university?</label>
+    <div class="form-check">
+      <input type="radio" class="form-check-input" formControlName="interestedBy" value="friends" id="friends">
+      <label class="form-check-label" for="friends">Friends</label>
+    </div>
+    <div class="form-check">
+      <input type="radio" class="form-check-input" formControlName="interestedBy" value="television" id="television">
+      <label class="form-check-label" for="television">Television</label>
+    </div>
+    <div class="form-check">
+      <input type="radio" class="form-check-input" formControlName="interestedBy" value="internet" id="internet">
+      <label class="form-check-label" for="internet">Internet</label>
+    </div>
+    <div class="form-check">
+      <input type="radio" class="form-check-input" formControlName="interestedBy" value="other" id="other">
+      <label class="form-check-label" for="other">Other</label>
     </div>
   </div>
 
-  <!-- Dropdown for likelihood to recommend the school -->
-  <div>
-    <label for="likelihoodToRecommend">Likelihood to Recommend:</label>
-    <select id="likelihoodToRecommend" formControlName="likelihoodToRecommend">
+  <div class="mb-3">
+    <label for="likelihoodToRecommend" class="form-label">Likelihood to Recommend:</label>
+    <select id="likelihoodToRecommend" formControlName="likelihoodToRecommend" class="form-select">
       <option value="veryLikely">Very Likely</option>
       <option value="likely">Likely</option>
       <option value="unlikely">Unlikely</option>
     </select>
   </div>
 
-  <!-- Text area for additional comments -->
-  <div>
-    <label for="additionalComments">Additional Comments:</label>
-    <textarea
-      id="additionalComments"
-      formControlName="additionalComments"
-    ></textarea>
+  <div class="mb-3">
+    <label for="additionalComments" class="form-label">Additional Comments:</label>
+    <textarea id="additionalComments" formControlName="additionalComments" class="form-control"></textarea>
   </div>
 
-  <!-- Submit and cancel buttons -->
-  <div>
-    <button type="submit">Submit</button>
-    <button type="button">Cancel</button>
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
   </div>
 </form>
