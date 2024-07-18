@@ -74,30 +74,9 @@ export class SurveyFormComponent implements OnInit {
         error: (err) => console.error('Error submitting form:', err)
       });
     } else {
-      this.validateAllFormFields(this.surveyForm);
       this.showValidationErrors();
       this.openModal();
     }
-  }
-
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      } else if (control instanceof FormArray) {
-        control.controls.forEach(ctrl => {
-          if (ctrl instanceof FormGroup) {
-            this.validateAllFormFields(ctrl);
-          }
-          if (ctrl instanceof FormControl) {
-            ctrl.markAsTouched({ onlySelf: true });
-          }
-        });
-      }
-    });
   }
 
   showValidationErrors() {
