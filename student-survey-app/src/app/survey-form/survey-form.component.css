@@ -77,3 +77,26 @@
 .btn-primary:hover, .btn-secondary:hover {
   opacity: 0.9;
 }
+
+.is-invalid .form-control,
+.is-invalid .form-select,
+.is-invalid .form-check-input {
+  border-color: #dc3545;
+}
+
+.is-invalid .form-check-label::before {
+  border-color: #dc3545;
+}
+
+.is-invalid .form-check-label {
+  color: #dc3545;
+}
+
+.alert-danger ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.alert-danger ul li {
+  list-style-type: disc;
+}

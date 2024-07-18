@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SurveyService } from '../survey.service';
 import { DatePipe } from '@angular/common';
@@ -17,6 +17,9 @@ export class EditSurveyComponent implements OnInit {
   successMessage: string = '';
   likedMostOptions: string[];  // Array of options for the "Liked Most" checkboxes
   interestedByOptions: string[]; // Similarly for radio buttons, if needed
+  validationErrors: string[] = [];
+  showModal: boolean = false;
+  formSubmitted: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -55,13 +58,15 @@ export class EditSurveyComponent implements OnInit {
       email: [survey.email, [Validators.required, Validators.email]],
       dateOfSurvey: [this.datePipe.transform(survey.dateOfSurvey, 'yyyy-MM-dd'), Validators.required],
       likedMost: this.fb.array(likedMostArray),
-      interestedBy: [interestedBy, Validators.required],
-      likelihoodToRecommend: [survey.likelihoodToRecommend, Validators.required],
+      interestedBy: [interestedBy],
+      likelihoodToRecommend: [survey.likelihoodToRecommend],
       additionalComments: [survey.additionalComments]
     });
   }
 
   onSubmit(): void {
+    this.formSubmitted = true;
+
     if (this.surveyForm.valid) {
       const formValue = this.surveyForm.value;
       formValue.likedMost = this.likedMostOptions.filter((option, index) => (this.surveyForm.get('likedMost') as FormArray).at(index).value);
@@ -69,6 +74,7 @@ export class EditSurveyComponent implements OnInit {
       this.surveyService.updateSurvey(this.surveyId, this.surveyForm.value).subscribe({
         next: () => {
           this.successMessage = 'Survey updated successfully!';
+          this.formSubmitted = false;
           setTimeout(() => {
             this.successMessage = '';
             this.router.navigate(['/list-surveys']);
@@ -76,7 +82,57 @@ export class EditSurveyComponent implements OnInit {
         },
         error: (err) => console.error('Error updating survey:', err)
       });
+    } else {
+      this.validateAllFormFields(this.surveyForm);
+      this.showValidationErrors();
+      this.openModal();
     }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      } else if (control instanceof FormArray) {
+        control.controls.forEach(ctrl => {
+          if (ctrl instanceof FormGroup) {
+            this.validateAllFormFields(ctrl);
+          }
+          if (ctrl instanceof FormControl) {
+            ctrl.markAsTouched({ onlySelf: true });
+          }
+        });
+      }
+    });
+  }
+
+  showValidationErrors() {
+    this.validationErrors = [];
+    Object.keys(this.surveyForm.controls).forEach(key => {
+      const controlErrors = this.surveyForm.get(key)?.errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          if (keyError === 'required') {
+            this.validationErrors.push(`${this.formatFieldName(key)} is required.`);
+          }
+        });
+      }
+    });
+  }
+
+  formatFieldName(fieldName: string): string {
+    return fieldName.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+  }
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 
   cancel(): void {

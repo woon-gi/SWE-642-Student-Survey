@@ -11,47 +11,51 @@
   </div>
 
   <div class="mb-3">
-    <label for="firstName" class="form-label">First Name:</label>
+    <span class="text-danger">*</span> <span class="form-label">indicates required fields</span>
+  </div>
+
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('firstName')?.invalid}">
+    <label for="firstName" class="form-label">First Name: <span class="text-danger">*</span></label>
     <input id="firstName" formControlName="firstName" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3">
-    <label for="lastName" class="form-label">Last Name:</label>
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('lastName')?.invalid}">
+    <label for="lastName" class="form-label">Last Name: <span class="text-danger">*</span></label>
     <input id="lastName" formControlName="lastName" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3">
-    <label for="streetAddress" class="form-label">Street Address:</label>
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('streetAddress')?.invalid}">
+    <label for="streetAddress" class="form-label">Street Address: <span class="text-danger">*</span></label>
     <input id="streetAddress" formControlName="streetAddress" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3">
-    <label for="city" class="form-label">City:</label>
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('city')?.invalid}">
+    <label for="city" class="form-label">City: <span class="text-danger">*</span></label>
     <input id="city" formControlName="city" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3">
-    <label for="state" class="form-label">State:</label>
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('state')?.invalid}">
+    <label for="state" class="form-label">State: <span class="text-danger">*</span></label>
     <input id="state" formControlName="state" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3">
-    <label for="zip" class="form-label">Zip Code:</label>
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('zip')?.invalid}">
+    <label for="zip" class="form-label">Zip Code: <span class="text-danger">*</span></label>
     <input id="zip" formControlName="zip" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3">
-    <label for="telephoneNumber" class="form-label">Telephone Number:</label>
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('telephoneNumber')?.invalid}">
+    <label for="telephoneNumber" class="form-label">Telephone Number: <span class="text-danger">*</span></label>
     <input id="telephoneNumber" formControlName="telephoneNumber" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3">
-    <label for="email" class="form-label">Email:</label>
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('email')?.invalid}">
+    <label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
     <input id="email" formControlName="email" type="email" class="form-control" />
   </div>
 
-  <div class="mb-3">
-    <label for="dateOfSurvey" class="form-label">Date of Survey:</label>
+  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('dateOfSurvey')?.invalid}">
+    <label for="dateOfSurvey" class="form-label">Date of Survey: <span class="text-danger">*</span></label>
     <input id="dateOfSurvey" formControlName="dateOfSurvey" type="date" class="form-control" />
   </div>
 
@@ -104,3 +108,23 @@
     <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
   </div>
 </form>
+
+<!-- Modal for validation errors -->
+<div class="modal fade" tabindex="-1" [ngClass]="{'show': showModal}" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Validation Errors</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let error of validationErrors">{{ error }}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

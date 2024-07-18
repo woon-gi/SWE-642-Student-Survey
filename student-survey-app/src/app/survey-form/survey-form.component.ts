@@ -12,6 +12,9 @@ export class SurveyFormComponent implements OnInit {
   surveyForm: FormGroup = this.fb.group({});
   successMessage: string = '';
   likedMostOptions: string[] = ['Students', 'Location', 'Campus', 'Atmosphere', 'Dorm Rooms', 'Sports'];
+  validationErrors: string[] = [];
+  showModal: boolean = false;
+  formSubmitted: boolean = false;
 
   constructor(private fb: FormBuilder, private surveyService: SurveyService, private router: Router) {
     this.initializeForm();
@@ -33,8 +36,8 @@ export class SurveyFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       dateOfSurvey: ['', Validators.required],
       likedMost: this.fb.array([]),
-      interestedBy: ['', Validators.required],
-      likelihoodToRecommend: ['', Validators.required],
+      interestedBy: [''],
+      likelihoodToRecommend: [''],
       additionalComments: ['']
     });
   }
@@ -49,6 +52,8 @@ export class SurveyFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.formSubmitted = true;
+
     if (this.surveyForm.valid) {
       const formData = { ...this.surveyForm.value };
       formData.likedMost = formData.likedMost
@@ -61,13 +66,64 @@ export class SurveyFormComponent implements OnInit {
           this.surveyForm.reset();
           this.clearFormArray(this.likedMostArray);
           this.initializeCheckboxes();
+          this.formSubmitted = false;
           setTimeout(() => {
             this.successMessage = '';
           }, 3000);
         },
         error: (err) => console.error('Error submitting form:', err)
       });
+    } else {
+      this.validateAllFormFields(this.surveyForm);
+      this.showValidationErrors();
+      this.openModal();
     }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      } else if (control instanceof FormArray) {
+        control.controls.forEach(ctrl => {
+          if (ctrl instanceof FormGroup) {
+            this.validateAllFormFields(ctrl);
+          }
+          if (ctrl instanceof FormControl) {
+            ctrl.markAsTouched({ onlySelf: true });
+          }
+        });
+      }
+    });
+  }
+
+  showValidationErrors() {
+    this.validationErrors = [];
+    Object.keys(this.surveyForm.controls).forEach(key => {
+      const controlErrors = this.surveyForm.get(key)?.errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          if (keyError === 'required') {
+            this.validationErrors.push(`${this.formatFieldName(key)} is required.`);
+          }
+        });
+      }
+    });
+  }
+
+  formatFieldName(fieldName: string): string {
+    return fieldName.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+  }
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 
   cancel() {
