@@ -1,71 +1,183 @@
+<app-header></app-header>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/welcome">Home</a></li>
-    <li class="breadcrumb-item"><a routerLink="/list-surveys">Survey List</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Edit Survey</li>
+    <li class="breadcrumb-item active" aria-current="page">Survey Form</li>
   </ol>
 </nav>
 
-<form [formGroup]="surveyForm" (ngSubmit)="onSubmit()" class="container mt-4" *ngIf="surveyForm">
+<form
+  [formGroup]="surveyForm"
+  (ngSubmit)="onSubmit()"
+  class="container mt-4"
+  *ngIf="surveyForm"
+>
   <div *ngIf="successMessage" class="alert alert-success">
     {{ successMessage }}
   </div>
 
   <div class="mb-3">
-    <span class="text-danger">*</span> <span class="form-label">indicates required fields</span>
+    <span class="text-danger">*</span>
+    <span class="form-label">indicates required fields</span>
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('firstName')?.invalid}">
-    <label for="firstName" class="form-label">First Name: <span class="text-danger">*</span></label>
-    <input id="firstName" formControlName="firstName" type="text" class="form-control" />
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('firstName')?.invalid
+    }"
+  >
+    <label for="firstName" class="form-label"
+      >First Name: <span class="text-danger">*</span></label
+    >
+    <input
+      id="firstName"
+      formControlName="firstName"
+      type="text"
+      class="form-control"
+    />
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('lastName')?.invalid}">
-    <label for="lastName" class="form-label">Last Name: <span class="text-danger">*</span></label>
-    <input id="lastName" formControlName="lastName" type="text" class="form-control" />
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('lastName')?.invalid
+    }"
+  >
+    <label for="lastName" class="form-label"
+      >Last Name: <span class="text-danger">*</span></label
+    >
+    <input
+      id="lastName"
+      formControlName="lastName"
+      type="text"
+      class="form-control"
+    />
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('streetAddress')?.invalid}">
-    <label for="streetAddress" class="form-label">Street Address: <span class="text-danger">*</span></label>
-    <input id="streetAddress" formControlName="streetAddress" type="text" class="form-control" />
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('streetAddress')?.invalid
+    }"
+  >
+    <label for="streetAddress" class="form-label"
+      >Street Address: <span class="text-danger">*</span></label
+    >
+    <input
+      id="streetAddress"
+      formControlName="streetAddress"
+      type="text"
+      class="form-control"
+    />
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('city')?.invalid}">
-    <label for="city" class="form-label">City: <span class="text-danger">*</span></label>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('city')?.invalid
+    }"
+  >
+    <label for="city" class="form-label"
+      >City: <span class="text-danger">*</span></label
+    >
     <input id="city" formControlName="city" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('state')?.invalid}">
-    <label for="state" class="form-label">State: <span class="text-danger">*</span></label>
-    <input id="state" formControlName="state" type="text" class="form-control" />
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('state')?.invalid
+    }"
+  >
+    <label for="state" class="form-label"
+      >State: <span class="text-danger">*</span></label
+    >
+    <input
+      id="state"
+      formControlName="state"
+      type="text"
+      class="form-control"
+    />
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('zip')?.invalid}">
-    <label for="zip" class="form-label">Zip Code: <span class="text-danger">*</span></label>
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('zip')?.invalid
+    }"
+  >
+    <label for="zip" class="form-label"
+      >Zip Code: <span class="text-danger">*</span></label
+    >
     <input id="zip" formControlName="zip" type="text" class="form-control" />
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('telephoneNumber')?.invalid}">
-    <label for="telephoneNumber" class="form-label">Telephone Number: <span class="text-danger">*</span></label>
-    <input id="telephoneNumber" formControlName="telephoneNumber" type="text" class="form-control" />
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('telephoneNumber')?.invalid
+    }"
+  >
+    <label for="telephoneNumber" class="form-label"
+      >Telephone Number: <span class="text-danger">*</span></label
+    >
+    <input
+      id="telephoneNumber"
+      formControlName="telephoneNumber"
+      type="text"
+      class="form-control"
+    />
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('email')?.invalid}">
-    <label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
-    <input id="email" formControlName="email" type="email" class="form-control" />
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('email')?.invalid
+    }"
+  >
+    <label for="email" class="form-label"
+      >Email: <span class="text-danger">*</span></label
+    >
+    <input
+      id="email"
+      formControlName="email"
+      type="email"
+      class="form-control"
+    />
   </div>
 
-  <div class="mb-3" [ngClass]="{'is-invalid': formSubmitted && surveyForm.get('dateOfSurvey')?.invalid}">
-    <label for="dateOfSurvey" class="form-label">Date of Survey: <span class="text-danger">*</span></label>
-    <input id="dateOfSurvey" formControlName="dateOfSurvey" type="date" class="form-control" />
+  <div
+    class="mb-3"
+    [ngClass]="{
+      'is-invalid': formSubmitted && surveyForm.get('dateOfSurvey')?.invalid
+    }"
+  >
+    <label for="dateOfSurvey" class="form-label"
+      >Date of Survey: <span class="text-danger">*</span></label
+    >
+    <input
+      id="dateOfSurvey"
+      formControlName="dateOfSurvey"
+      type="date"
+      class="form-control"
+    />
   </div>
 
   <!-- Liked Most -->
   <div class="form-group">
     <label>Liked Most:</label>
     <div formArrayName="likedMost" class="checkbox-group">
-      <div class="form-check" *ngFor="let option of likedMostOptions; let i = index">
-        <input type="checkbox" class="form-check-input" [value]="option" [formControlName]="i">
+      <div
+        class="form-check"
+        *ngFor="let option of likedMostOptions; let i = index"
+      >
+        <input
+          type="checkbox"
+          class="form-check-input"
+          [value]="option"
+          [formControlName]="i"
+        />
         <label class="form-check-label">{{ option }}</label>
       </div>
     </div>
@@ -75,8 +187,16 @@
   <div class="form-group">
     <label>Interested By:</label>
     <div class="radio-group">
-      <div class="form-check" *ngFor="let option of interestedByOptions; let i = index">
-        <input type="radio" class="form-check-input" [value]="option" formControlName="interestedBy">
+      <div
+        class="form-check"
+        *ngFor="let option of interestedByOptions; let i = index"
+      >
+        <input
+          type="radio"
+          class="form-check-input"
+          [value]="option"
+          formControlName="interestedBy"
+        />
         <label class="form-check-label">{{ option }}</label>
       </div>
     </div>
@@ -85,7 +205,11 @@
   <!-- Likelihood to Recommend -->
   <div class="form-group">
     <label for="likelihoodToRecommend">Likelihood to Recommend:</label>
-    <select id="likelihoodToRecommend" class="form-control" formControlName="likelihoodToRecommend">
+    <select
+      id="likelihoodToRecommend"
+      class="form-control"
+      formControlName="likelihoodToRecommend"
+    >
       <option value="veryLikely">Very Likely</option>
       <option value="likely">Likely</option>
       <option value="unlikely">Unlikely</option>
@@ -95,18 +219,29 @@
   <!-- Additional Comments -->
   <div class="form-group">
     <label for="additionalComments">Additional Comments:</label>
-    <textarea id="additionalComments" class="form-control" formControlName="additionalComments"></textarea>
+    <textarea
+      id="additionalComments"
+      class="form-control"
+      formControlName="additionalComments"
+    ></textarea>
   </div>
 
   <!-- Submit and Cancel Buttons -->
   <div class="form-group">
     <button type="submit" class="btn btn-primary">Save Changes</button>
-    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">
+      Cancel
+    </button>
   </div>
 </form>
 
 <!-- Modal for validation errors -->
-<div class="modal fade" tabindex="-1" [ngClass]="{'show': showModal}" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+<div
+  class="modal fade"
+  tabindex="-1"
+  [ngClass]="{ show: showModal }"
+  [ngStyle]="{ display: showModal ? 'block' : 'none' }"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -119,8 +254,12 @@
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          Close
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>

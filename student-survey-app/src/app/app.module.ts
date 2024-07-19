@@ -9,6 +9,8 @@ import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { SurveyListComponent } from './survey-list/survey-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EditSurveyComponent } from './edit-survey/edit-survey.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { EditSurveyComponent } from './edit-survey/edit-survey.component';
     SurveyFormComponent,
     SurveyListComponent,
     WelcomeComponent,
-    EditSurveyComponent
+    EditSurveyComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

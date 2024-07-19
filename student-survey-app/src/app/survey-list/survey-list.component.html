@@ -1,3 +1,4 @@
+<app-header></app-header>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/welcome">Home</a></li>
@@ -19,9 +20,15 @@
       <td>{{ survey.firstName }}</td>
       <td>{{ survey.lastName }}</td>
       <td>
-        <button class="btn btn-primary" (click)="editSurvey(survey.id)">Edit</button>
-        <button class="btn btn-danger" (click)="deleteSurvey(survey.id)">Delete</button>
+        <button class="btn btn-primary" (click)="editSurvey(survey.id)">
+          Edit
+        </button>
+        <button class="btn btn-danger" (click)="deleteSurvey(survey.id)">
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>
 </table>
+<div class="content container text-center"></div>
+<app-footer></app-footer>
