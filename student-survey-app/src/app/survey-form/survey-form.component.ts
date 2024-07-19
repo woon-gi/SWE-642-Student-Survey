@@ -13,6 +13,7 @@ export class SurveyFormComponent implements OnInit {
   successMessage: string = '';
   likedMostOptions: string[] = ['Students', 'Location', 'Campus', 'Atmosphere', 'Dorm Rooms', 'Sports'];
   validationErrors: string[] = [];
+  isValidationError: boolean = false;
   showModal: boolean = false;
   formSubmitted: boolean = false;
 
@@ -63,18 +64,25 @@ export class SurveyFormComponent implements OnInit {
       this.surveyService.createSurvey(formData).subscribe({
         next: () => {
           this.successMessage = 'Form submitted successfully!';
+          this.isValidationError = false;
+          this.validationErrors = [];
+          this.showModal = true;
           this.surveyForm.reset();
           this.clearFormArray(this.likedMostArray);
           this.initializeCheckboxes();
           this.formSubmitted = false;
-          setTimeout(() => {
-            this.successMessage = '';
-          }, 3000);
         },
-        error: (err) => console.error('Error submitting form:', err)
+        error: (err) => {
+          console.error('Error submitting form:', err);
+          this.validationErrors = ['An error occurred while submitting the form. Please try again.'];
+          this.isValidationError = true;
+          this.openModal();
+        }
       });
     } else {
+      console.error('Invalid form!');
       this.showValidationErrors();
+      this.isValidationError = true;
       this.openModal();
     }
   }
@@ -105,8 +113,18 @@ export class SurveyFormComponent implements OnInit {
     this.showModal = false;
   }
 
-  cancel() {
+  returnToHome() {
     this.router.navigate(['/welcome']);
+  }
+
+  refreshForm() {
+    this.surveyForm.reset();
+    this.formSubmitted = false;
+    this.successMessage = '';
+    this.showModal = false;
+    this.isValidationError = false;
+    this.clearFormArray(this.likedMostArray);
+    this.initializeCheckboxes();
   }
 
   clearFormArray(formArray: FormArray) {
