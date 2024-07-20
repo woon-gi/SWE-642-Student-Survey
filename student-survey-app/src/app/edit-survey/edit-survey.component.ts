@@ -18,6 +18,7 @@ export class EditSurveyComponent implements OnInit {
   likedMostOptions: string[];  // Array of options for the "Liked Most" checkboxes
   interestedByOptions: string[]; // Similarly for radio buttons, if needed
   validationErrors: string[] = [];
+  isValidationError: boolean = false;
   showModal: boolean = false;
   formSubmitted: boolean = false;
 
@@ -74,16 +75,21 @@ export class EditSurveyComponent implements OnInit {
       this.surveyService.updateSurvey(this.surveyId, this.surveyForm.value).subscribe({
         next: () => {
           this.successMessage = 'Survey updated successfully!';
+          this.isValidationError = false;
+          this.showModal = true;
           this.formSubmitted = false;
-          setTimeout(() => {
-            this.successMessage = '';
-            this.router.navigate(['/list-surveys']);
-          }, 3000);
         },
-        error: (err) => console.error('Error updating survey:', err)
+        error: (err) => {
+          console.error('Error submitting form:', err);
+          this.validationErrors = ['An error occurred while submitting the form. Please try again.'];
+          this.isValidationError = true;
+          this.openModal();
+        }
       });
     } else {
+      console.error('Invalid form!');
       this.showValidationErrors();
+      this.isValidationError = true;
       this.openModal();
     }
   }
@@ -114,7 +120,7 @@ export class EditSurveyComponent implements OnInit {
     this.showModal = false;
   }
 
-  cancel(): void {
-    this.router.navigate(['/list-surveys']);
+  returnToHome() {
+    this.router.navigate(['/welcome']);
   }
 }
