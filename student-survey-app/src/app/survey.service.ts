@@ -1,3 +1,11 @@
+/*
+  Name: Woon-Gi Hong
+  G#: G01032192
+  Name: Jimmy Tran
+  G#: G01130635
+  Course-Section: SWE642-001
+  Assignment: #3 */
+  
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';

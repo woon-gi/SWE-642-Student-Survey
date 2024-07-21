@@ -1,3 +1,13 @@
+/*
+  Name: Woon-Gi Hong
+  G#: G01032192
+  Name: Jimmy Tran
+  G#: G01130635
+  Course-Section: SWE642-001
+  Assignment: #3
+  The EditSurveyComponent will allow the user to load survey data by ID. The survey forms will be pre-populated by the survey object.
+  The component also uses form control and validators to ensure all required fields are filled out prior to submission.
+*/
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';

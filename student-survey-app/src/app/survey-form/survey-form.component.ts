@@ -1,3 +1,14 @@
+/*
+  Name: Woon-Gi Hong
+  G#: G01032192
+  Name: Jimmy Tran
+  G#: G01130635
+  Course-Section: SWE642-001
+  Assignment: #3
+  The SurveyFormComponent will allow the user to create and submit survey form data to the back-end. The component includes form fields to enter survey details 
+  and uses validation rules to ensure any fields flagged as required are filled out, prior to submission.
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../survey.service';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';

@@ -1,3 +1,14 @@
+/*
+  Name: Woon-Gi Hong
+  G#: G01032192
+  Name: Jimmy Tran
+  G#: G01130635
+  Course-Section: SWE642-001
+  Assignment: #3
+  
+  Sets up the routes for the application by mapping URL paths to corresponding components
+*/
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';

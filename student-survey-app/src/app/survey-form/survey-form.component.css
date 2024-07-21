@@ -1,4 +1,12 @@
-/* Bootstrap overrides and custom styles */
+/*
+  Name: Woon-Gi Hong
+  G#: G01032192
+  Name: Jimmy Tran
+  G#: G01130635
+  Course-Section: SWE642-001
+  Assignment: #3
+
+  Bootstrap overrides and custom styles */
 
 /* Ensure checkboxes and radio buttons align with their labels */
 .form-check-inline .form-check-input,
@@ -78,6 +86,7 @@
   opacity: 0.9;
 }
 
+/* Dynamic CSS styling to highlight invalid fields */
 .is-invalid .form-control,
 .is-invalid .form-select,
 .is-invalid .form-check-input {

@@ -1,3 +1,14 @@
+/*
+  Name: Woon-Gi Hong
+  G#: G01032192
+  Name: Jimmy Tran
+  G#: G01130635
+  Course-Section: SWE642-001
+  Assignment: #3
+
+  Root module of the Angular application, defining the main configurations of the app. This module also sets all the components that will be used in the app, such as
+  SurveyFormComponent, SurveyListComponent, WelcomeComponent, etc. */
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
