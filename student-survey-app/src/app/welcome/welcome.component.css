@@ -1,9 +1,11 @@
+/* Welcome component styling */
 :host {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
+/* Container styling */
 .content {
     flex: 1;
     display: flex;
